@@ -19,6 +19,7 @@ return require("packer").startup(function(use)
 
 	use("rose-pine/neovim")
 	use("nvim-lualine/lualine.nvim")
+	use({ "alvarosevilla95/luatab.nvim", requires = "kyazdani42/nvim-web-devicons" })
 	use("j-hui/fidget.nvim")
 
 	use("theprimeagen/harpoon")
