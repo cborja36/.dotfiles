@@ -30,6 +30,7 @@ return require("packer").startup(function(use)
 	use({ "cjrh/vim-conda", opt = true, cmd = { "CondaChangeEnv" } })
 	use("eandrju/cellular-automaton.nvim") -- Easter egg
 	use("lervag/vimtex")
+	use("knubie/vim-kitty-navigator")
 
 	-- LSP Support
 	use("neovim/nvim-lspconfig")

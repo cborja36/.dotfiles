@@ -3,6 +3,11 @@ local keymap = vim.keymap
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+keymap.set('n', '<s-left>', ':silent KittyNavigateLeft<cr>')
+keymap.set('n', '<s-down>', ':silent KittyNavigateDown<cr>')
+keymap.set('n', '<s-up>', ':silent KittyNavigateUp<cr>')
+keymap.set('n', '<s-right>', ':silent KittyNavigateRight<cr>')
+
 -- keymap.set("n", "<leader>e", vim.cmd.Explore)
 keymap.set("n", "<leader><s-e>", ":edit.<CR>")
 
