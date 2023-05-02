@@ -21,6 +21,16 @@ alias ..="cd .."
 alias ls="ls -G"
 alias ll="ls -lh"
 
+# Git aliases
+alias add="git add"
+alias commit="git commit"
+alias pull="git pull"
+alias stat="git status"
+alias gdiff="git diff HEAD"
+alias vdiff="git difftool HEAD"
+alias log="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias push="git push"
+
 # Define functions
 brew() {
   command brew "$@" 
@@ -73,7 +83,6 @@ if [ -z "$VIMRUNTIME" ]; then
   export VISUAL='nvim'
 fi
 
-# Change path
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/miniforge3/bin:/usr/local/anaconda3/bin:$PATH"
 export EDITOR="$(which nvim)"
