@@ -83,6 +83,24 @@ if [ -z "$VIMRUNTIME" ]; then
   export VISUAL='nvim'
 fi
 
+# >>> conda initialize >>>
+__conda_setup="$('/Users/borjacastillo/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/borjacastillo/miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/borjacastillo/miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/borjacastillo/miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/miniforge3/bin:/usr/local/anaconda3/bin:$PATH"
 export EDITOR="$(which nvim)"
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
