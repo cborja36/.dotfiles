@@ -3,16 +3,22 @@ local keymap = vim.keymap
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-keymap.set('n', '<s-left>', ':silent KittyNavigateLeft<cr>')
-keymap.set('n', '<s-down>', ':silent KittyNavigateDown<cr>')
-keymap.set('n', '<s-up>', ':silent KittyNavigateUp<cr>')
-keymap.set('n', '<s-right>', ':silent KittyNavigateRight<cr>')
+keymap.set("n", "<s-left>", "<cmd>silent KittyNavigateLeft<cr>")
+keymap.set("n", "<s-down>", "<cmd>silent KittyNavigateDown<cr>")
+keymap.set("n", "<s-up>", "<cmd>silent KittyNavigateUp<cr>")
+keymap.set("n", "<s-right>", "<cmd>silent KittyNavigateRight<cr>")
 
 -- keymap.set("n", "<leader>e", vim.cmd.Explore)
 keymap.set("n", "<leader><s-e>", ":edit.<CR>")
 
 keymap.set("n", "<leader>l", vim.lsp.buf.format)
 keymap.set("n", "<leader>st", ":stop<CR>")
+keymap.set(
+	"n",
+	"<leader>cd",
+	[[<Cmd>let dir = (&ft !=# 'netrw') ? expand('%:p:h') : b:netrw_curdir | execute 'lcd '.dir | echo 'lcd '.dir<CR>]],
+	{ silent = false }
+)
 
 keymap.set("n", "<leader>w", ":w<CR>")
 keymap.set("n", "<leader>q", ":q<CR>")
@@ -43,6 +49,11 @@ keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- terminal
 keymap.set("t", "<Esc>", "<C-\\><C-n>")
 keymap.set("t", "<C-v><Esc>", "<Esc>")
+keymap.set("t", "<s-left>", "<cmd>silent KittyNavigateLeft<cr>")
+keymap.set("t", "<s-down>", "<cmd>silent KittyNavigateDown<cr>")
+keymap.set("t", "<s-up>", "<cmd>silent KittyNavigateUp<cr>")
+keymap.set("t", "<s-right>", "<cmd>silent KittyNavigateRight<cr>")
 
 -- Easter egg
-keymap.set("n", "<leader>zz", "<cmd>CellularAutomaton make_it_rain<CR>")
+keymap.set("n", "<leader>zz", "<cmd>ZenMode<CR>")
+-- keymap.set("n", "<leader>zz", "<cmd>CellularAutomaton make_it_rain<CR>")
