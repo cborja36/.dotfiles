@@ -14,12 +14,14 @@ PURE_PROMPT_VICMD_SYMBOL=V
 
 # Define aliases
 alias n="nnn"
+alias vw="nvim ~/vimwiki/index.wiki"
 alias lz="lazygit"
-alias cls="clear"
 alias home="cd ~"
 alias ..="cd .."
 alias ls="ls -G"
 alias ll="ls -lh"
+alias toipe="toipe -n 40 -w top1000"
+alias dsf="diff-so-fancy"
 
 # Git aliases
 alias add="git add"
@@ -70,6 +72,13 @@ ob() {
     fi
 }
 
+py() {
+    version=${1:0:1}.${1:1}
+    command="docker run -it --rm -v .:/code -v ~/.aws:/root/.aws python:$version /bin/bash"
+    echo "$command"
+    eval "$command"
+}
+
 # Prevent nested instances of neovim
 if [ -n "$VIMRUNTIME" ]; then 
   if [ -x "$(command -v nvr)" ]; then 
@@ -104,3 +113,7 @@ export EDITOR="$(which nvim)"
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
