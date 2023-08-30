@@ -122,6 +122,16 @@ lspconfig["jsonls"].setup({
 
 -- configure svelte server
 lspconfig["svelte"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- configure c server
+lspconfig["clangd"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	cmd = {
+		"clangd",
+		"--offset-encoding=utf-16",
+	},
 })

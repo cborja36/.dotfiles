@@ -13,5 +13,8 @@ null_ls.setup({
 		formatting.black,
 		formatting.stylua,
 		formatting.prettier,
+    formatting.clang_format.with({
+      extra_args = { "-style=Google" },
+    }),
 	},
 })

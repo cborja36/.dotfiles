@@ -16,21 +16,50 @@ return require("packer").startup(function(use)
 	use("tpope/vim-fugitive") -- git integration
 	-- use("tpope/vim-vinegar") -- file explorer (extraño bug al reenfocar la ventana)
 	use("tpope/vim-surround") -- surround text with characters
+  use("stevearc/oil.nvim") -- file explorer
 
 	use("norcalli/nvim-colorizer.lua")
 
 	use("rose-pine/neovim")
 	use("nvim-lualine/lualine.nvim")
 	use({ "alvarosevilla95/luatab.nvim", requires = "kyazdani42/nvim-web-devicons" })
-	use("j-hui/fidget.nvim")
+	-- use("j-hui/fidget.nvim")
 	use("folke/zen-mode.nvim")
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({
+				show_current_context = true,
+			})
+		end,
+	})
+
+	use({
+		"vimwiki/vimwiki",
+		config = function()
+			vim.g.vimwiki_key_mappings = { headers = 0 }
+		end,
+	})
 
 	use("theprimeagen/harpoon")
 	use("mbbill/undotree")
 	use("lewis6991/gitsigns.nvim")
-	use("rcarriga/nvim-notify")
+	use({
+		"rcarriga/nvim-notify",
+		config = function()
+			require("notify").setup({
+				background_colour = "#000000",
+			})
+		end,
+	})
 
-	use("github/copilot.vim")
+	-- use("github/copilot.vim")
 	use({ "cjrh/vim-conda", opt = true, cmd = { "CondaChangeEnv" } })
 	use("eandrju/cellular-automaton.nvim") -- Easter egg
 	use("lervag/vimtex")

@@ -8,11 +8,8 @@ keymap.set("n", "<s-down>", "<cmd>silent KittyNavigateDown<cr>")
 keymap.set("n", "<s-up>", "<cmd>silent KittyNavigateUp<cr>")
 keymap.set("n", "<s-right>", "<cmd>silent KittyNavigateRight<cr>")
 
--- keymap.set("n", "<leader>e", vim.cmd.Explore)
-keymap.set("n", "<leader><s-e>", ":edit.<CR>")
-
 keymap.set("n", "<leader>l", vim.lsp.buf.format)
-keymap.set("n", "<leader>st", ":stop<CR>")
+keymap.set("n", "<leader>op", "<cmd>stop<CR>")
 keymap.set(
 	"n",
 	"<leader>cd",
@@ -20,8 +17,9 @@ keymap.set(
 	{ silent = false }
 )
 
-keymap.set("n", "<leader>w", ":w<CR>")
+keymap.set("n", "<leader>s", ":w<CR>")
 keymap.set("n", "<leader>q", ":q<CR>")
+keymap.set("n", "<leader>Q", ":q!<CR>")
 
 -- Better movement with j and k
 keymap.set("n", "j", "gj")
@@ -36,9 +34,6 @@ keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
-
--- restart lsp server
-keymap.set("n", "<leader>rs", ":LspRestart<CR>")
 
 -- register keymaps
 keymap.set("x", "<leader>p", [["_dP]])
