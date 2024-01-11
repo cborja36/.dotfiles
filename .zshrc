@@ -5,6 +5,13 @@ source $HOME/scripts/colored-man-pages.plugin.zsh  # https://github.com/ael-code
 source $HOME/.fzf.zsh  # TODO: I need to do this with homebrew
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Better history
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+
+setopt HIST_IGNORE_ALL_DUPS
+setopt INC_APPEND_HISTORY
+
 # Load prompt
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 autoload -U promptinit; promptinit
@@ -13,6 +20,8 @@ PURE_PROMPT_SYMBOL=
 PURE_PROMPT_VICMD_SYMBOL=V
 
 # Define aliases
+alias s="kitty +kitten ssh"
+alias fzfh="cat ~/.zsh_history | fzf"
 alias n="nnn"
 alias vw="nvim ~/vimwiki/index.wiki"
 alias lz="lazygit"
@@ -22,6 +31,9 @@ alias ls="ls -G"
 alias ll="ls -lh"
 alias toipe="toipe -n 40 -w top1000"
 alias dsf="diff-so-fancy"
+alias satdev='s -i "/Users/borjacastillo/Documents/at3w/borjaInstance.pem" ec2-user@52.31.41.172'
+alias satprod='s -i "/Users/borjacastillo/Documents/at3w/borjaInstance.pem" ec2-user@18.202.83.69'
+alias satubuntu='echo Password:IoT_2017_Nc4 && s tsegui@192.168.210.43'
 
 # Git aliases
 alias add="git add"
@@ -109,6 +121,7 @@ unset __conda_setup
 export PATH="/Library/TeX/texbin:$PATH"
 export PATH="$HOME/miniforge3/bin:/usr/local/anaconda3/bin:$PATH"
 export EDITOR="$(which nvim)"
+export PATH="/usr/local/mysql/bin:$PATH"
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit

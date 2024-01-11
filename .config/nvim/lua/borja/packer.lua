@@ -16,9 +16,10 @@ return require("packer").startup(function(use)
 	use("tpope/vim-fugitive") -- git integration
 	-- use("tpope/vim-vinegar") -- file explorer (extraño bug al reenfocar la ventana)
 	use("tpope/vim-surround") -- surround text with characters
-  use("stevearc/oil.nvim") -- file explorer
+	use("stevearc/oil.nvim") -- file explorer
 
 	use("norcalli/nvim-colorizer.lua")
+	use("ggandor/leap.nvim")
 
 	use("rose-pine/neovim")
 	use("nvim-lualine/lualine.nvim")
@@ -31,14 +32,16 @@ return require("packer").startup(function(use)
 			require("nvim-autopairs").setup({})
 		end,
 	})
-	use({
-		"lukas-reineke/indent-blankline.nvim",
-		config = function()
-			require("indent_blankline").setup({
-				show_current_context = true,
-			})
-		end,
-	})
+	-- use({
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	config = function()
+	-- 		require("ibl").setup({
+	-- 			indent = {
+	-- 				char = "▏",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- })
 
 	use({
 		"vimwiki/vimwiki",
@@ -57,6 +60,16 @@ return require("packer").startup(function(use)
 				background_colour = "#000000",
 			})
 		end,
+	})
+
+	use({
+		"danymat/neogen",
+		config = function()
+			require("neogen").setup({})
+		end,
+		requires = "nvim-treesitter/nvim-treesitter",
+		-- Uncomment next line if you want to follow only stable versions
+		tag = "*",
 	})
 
 	-- use("github/copilot.vim")
@@ -101,7 +114,7 @@ return require("packer").startup(function(use)
 		requires = { { "jpalardy/vim-slime", opt = true } },
 		ft = { "julia", "python" },
 		config = function()
-			vim.g.slime_target = "neovim"
+			vim.g.slime_target = "kitty"
 			vim.g.slime_cell_delimiter = "^\\s*##"
 			vim.g.slime_bracketed_paste = 1
 			vim.g.slime_no_mappings = 1

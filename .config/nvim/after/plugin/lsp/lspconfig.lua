@@ -126,6 +126,12 @@ lspconfig["svelte"].setup({
 	on_attach = on_attach,
 })
 
+-- configure svelte server
+lspconfig["rust_analyzer"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure c server
 lspconfig["clangd"].setup({
 	capabilities = capabilities,
@@ -135,3 +141,33 @@ lspconfig["clangd"].setup({
 		"--offset-encoding=utf-16",
 	},
 })
+
+
+vim.diagnostic.config({virtual_text = false})
+vim.api.nvim_create_user_command(
+  'DiagnosticsToggleVirtualText',
+  function()
+    local current_value = vim.diagnostic.config().virtual_text
+    if current_value then
+      vim.diagnostic.config({virtual_text = false})
+    else
+      vim.diagnostic.config({virtual_text = true})
+    end
+  end,
+  {}
+)
+vim.keymap.set("n", "<leader>tt", "<cmd>DiagnosticsToggleVirtualText<cr>")
+
+vim.api.nvim_create_user_command(
+  'DiagnosticsToggle',
+  function()
+    local current_value = vim.diagnostic.is_disabled()
+    if current_value then
+      vim.diagnostic.enable()
+    else
+      vim.diagnostic.disable()
+    end
+  end,
+  {}
+)
+vim.keymap.set("n", "<leader>td", "<cmd>DiagnosticsToggle<cr>")

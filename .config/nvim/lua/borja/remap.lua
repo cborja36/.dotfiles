@@ -2,6 +2,7 @@ local keymap = vim.keymap
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.kitty_navigator_no_mappings = 1
 
 keymap.set("n", "<s-left>", "<cmd>silent KittyNavigateLeft<cr>")
 keymap.set("n", "<s-down>", "<cmd>silent KittyNavigateDown<cr>")
@@ -9,7 +10,6 @@ keymap.set("n", "<s-up>", "<cmd>silent KittyNavigateUp<cr>")
 keymap.set("n", "<s-right>", "<cmd>silent KittyNavigateRight<cr>")
 
 keymap.set("n", "<leader>l", vim.lsp.buf.format)
-keymap.set("n", "<leader>op", "<cmd>stop<CR>")
 keymap.set(
 	"n",
 	"<leader>cd",
@@ -18,8 +18,19 @@ keymap.set(
 )
 
 keymap.set("n", "<leader>s", ":w<CR>")
-keymap.set("n", "<leader>q", ":q<CR>")
+keymap.set("n", "<leader>q", "<C-z>")
 keymap.set("n", "<leader>Q", ":q!<CR>")
+
+keymap.set("n", "<C-q>", "<cmd>lua vim.diagnostic.setqflist()<cr>")
+keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
+keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
+keymap.set("n", "<leader>cq", "<cmd>cclose<cr>")
+
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Fast endline semicolon
+-- keymap.set("n", "AA", "A;<ESC>")
 
 -- Better movement with j and k
 keymap.set("n", "j", "gj")
@@ -50,5 +61,29 @@ keymap.set("t", "<s-up>", "<cmd>silent KittyNavigateUp<cr>")
 keymap.set("t", "<s-right>", "<cmd>silent KittyNavigateRight<cr>")
 
 -- Easter egg
-keymap.set("n", "<leader>zz", "<cmd>ZenMode<CR>")
--- keymap.set("n", "<leader>zz", "<cmd>CellularAutomaton make_it_rain<CR>")
+-- keymap.set("n", "<leader>zz", "<cmd>ZenMode<CR>")
+keymap.set("n", "<leader>zz", "<cmd>CellularAutomaton make_it_rain<CR>")
+
+local Path = require("plenary.path")
+vim.api.nvim_create_user_command("RunScript", function()
+	local run_script_path = Path:new("run.sh")
+	if run_script_path:exists() then
+		vim.cmd("terminal ./run.sh")
+	else
+		local filetype = vim.bo.filetype
+		if filetype == "python" then
+			vim.cmd("terminal python3 %")
+		elseif filetype == "c" then
+			-- Replace with your preferred C run command
+			vim.cmd("terminal gcc % && ./a.out")
+		elseif filetype == "rust" then
+			vim.cmd("terminal cargo run")
+		elseif filetype == "javascript" then
+			-- Replace with your preferred Node.js run command
+			vim.cmd("terminal node %")
+		else
+			print("Unsupported filetype for RunScript")
+		end
+	end
+end, {})
+vim.keymap.set("n", "<leader>x", "<cmd>RunScript<CR>")
