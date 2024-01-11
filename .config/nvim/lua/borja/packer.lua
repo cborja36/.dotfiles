@@ -18,7 +18,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround") -- surround text with characters
 	use("stevearc/oil.nvim") -- file explorer
 
-	use("norcalli/nvim-colorizer.lua")
+	use("NVChad/nvim-colorizer.lua")
 	use("ggandor/leap.nvim")
 
 	use("rose-pine/neovim")
@@ -32,6 +32,18 @@ return require("packer").startup(function(use)
 			require("nvim-autopairs").setup({})
 		end,
 	})
+
+	use({
+		"roobert/tailwindcss-colorizer-cmp.nvim",
+		-- optionally, override the default options:
+		config = function()
+			require("tailwindcss-colorizer-cmp").setup({
+				color_square_width = 2,
+			})
+		end,
+	})
+	use("sindrets/diffview.nvim")
+
 	-- use({
 	-- 	"lukas-reineke/indent-blankline.nvim",
 	-- 	config = function()

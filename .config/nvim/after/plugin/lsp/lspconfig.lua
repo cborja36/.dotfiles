@@ -132,6 +132,12 @@ lspconfig["rust_analyzer"].setup({
 	on_attach = on_attach,
 })
 
+-- configure tailwind server
+lspconfig["tailwindcss"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure c server
 lspconfig["clangd"].setup({
 	capabilities = capabilities,
